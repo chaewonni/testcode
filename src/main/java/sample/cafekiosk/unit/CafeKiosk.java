@@ -40,12 +40,14 @@ public class CafeKiosk {
     }
 
     public int calculateTotalPrice() {
-        int totalPrice = 0;
-        for (Beverage beverage : beverages) {
-            totalPrice += beverage.getPrice();
-        }
-        return totalPrice;
+        return beverages.stream()
+                .mapToInt(beverage -> beverage.getPrice())
+                .sum();
     }
+
+//    public int calculateTotalPrice() {
+//        return 8500;
+//    }
 
     public Order createOrder() {
         LocalDateTime now = LocalDateTime.now();
